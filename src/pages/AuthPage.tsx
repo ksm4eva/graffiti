@@ -49,14 +49,14 @@ export default function AuthPage({ mode }: Props) {
       <div className="relative hidden overflow-hidden lg:block">
         <img src={galleryImages.aboutTall} alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-ink/30" />
-        <div className="absolute bottom-10 left-10 right-10 text-cream-100">
+        <div className="absolute bottom-10 left-10 right-10 text-white">
           <p className="font-serif text-3xl italic leading-snug">“Art worth discovering.”</p>
-          <p className="mt-3 text-[12px] uppercase tracking-[0.2em] text-cream-200/80">GRAFFITI Gallery · Accra</p>
+          <p className="mt-3 text-[12px] uppercase tracking-[0.2em] text-white/80">GRAFFITI Gallery · Accra</p>
         </div>
       </div>
 
       {/* Form side */}
-      <div className="flex flex-col justify-center bg-cream-100 px-6 py-12 md:px-16">
+      <div className="flex flex-col justify-center bg-white px-6 py-12 md:px-16">
         <div className="mx-auto w-full max-w-md">
           <div className="flex items-center justify-between">
             <Wordmark className="text-xl" onClick={() => navigate({ name: 'home' })} />
@@ -78,7 +78,7 @@ export default function AuthPage({ mode }: Props) {
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               onClick={googleSignIn}
               disabled={loading}
-              className="mt-8 flex w-full items-center justify-center gap-3 rounded-full border border-ink/20 bg-cream-50 px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink/40 disabled:opacity-60"
+              className="mt-8 flex w-full items-center justify-center gap-3 rounded-full border border-sand-200 bg-white px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink/40 disabled:opacity-60"
             >
               <GoogleIcon />
               Continue with Google
@@ -144,7 +144,7 @@ function Field({ label, type, placeholder, icon }: { label: string; type: string
           required
           type={type}
           placeholder={placeholder}
-          className={`w-full rounded-2xl border border-sand-200 bg-cream-50 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40 ${icon ? 'pl-11 pr-5' : 'px-5'}`}
+          className={`w-full rounded-2xl border border-sand-200 bg-sand-200/50 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40 ${icon ? 'pl-11 pr-5' : 'px-5'}`}
         />
       </div>
     </div>

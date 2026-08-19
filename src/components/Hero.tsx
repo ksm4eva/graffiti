@@ -16,7 +16,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="about" className="relative overflow-hidden bg-cream-100 pt-28 md:pt-36">
+    <section id="about" className="relative overflow-hidden bg-white pt-28 md:pt-36">
       {/* Decorative sand gradient */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-sand-300/40 blur-3xl" />
@@ -89,7 +89,7 @@ export default function Hero() {
           className="lg:col-span-5"
         >
           <div className="relative">
-            <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+            <div className="overflow-hidden rounded-2xl">
               <button
                 onClick={() => {
                   viewArtwork('w2');
@@ -109,9 +109,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.9 }}
-              className="absolute -bottom-5 -left-5 max-w-[220px] rounded-2xl border border-sand-200 bg-cream-50 p-4 shadow-sm md:-left-8"
+              className="absolute -bottom-5 -left-5 max-w-[220px] rounded-2xl bg-white p-4 shadow-lg md:-left-8"
             >
-              <p className="text-[11px] uppercase tracking-[0.2em] text-sand-600">Now showing</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-ink-muted">Now showing</p>
               <p className="mt-1 font-display text-lg text-ink">Mother's Hands</p>
               <p className="text-sm text-ink-muted">Ama Serwaa · 2023</p>
             </motion.div>

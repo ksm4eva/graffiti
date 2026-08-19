@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import CutoutText from '@/components/CutoutText';
 import GraffitiButton from '@/components/GraffitiButton';
 import StarRating from '@/components/StarRating';
@@ -7,18 +8,20 @@ import { useApp } from '@/contexts/AppContext';
 import { artworks, galleryImages } from '@/data/mock';
 import { formatPrice, getAverageRating } from '@/lib/artwork';
 
+// Pinterest-like varying aspect ratios for the featured collage.
+const RATIOS = ['aspect-[3/4]', 'aspect-[4/5]', 'aspect-square', 'aspect-[3/4]', 'aspect-[4/5]', 'aspect-[3/4]'];
+
 export default function HomePage() {
   const { navigate, viewArtwork } = useApp();
-  const featured = artworks.filter((a) => a.featured).slice(0, 3);
-  const heroArt = artworks[1];
+  const featured = artworks.filter((a) => a.featured).slice(0, 6);
 
   return (
-    <main className="bg-cream-100">
-      {/* Hero */}
+    <main className="bg-white">
+      {/* Hero — light, airy, image-forward like Pinterest's explore header */}
       <section className="relative overflow-hidden pt-28 md:pt-36">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-sand-300/40 blur-3xl" />
-          <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-terracotta-400/15 blur-3xl" />
+          <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-sand-200 blur-3xl" />
+          <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-terracotta-400/10 blur-3xl" />
         </div>
 
         <div className="container-x grid items-center gap-12 pb-20 md:pb-28 lg:grid-cols-12 lg:gap-16">
@@ -77,11 +80,11 @@ export default function HomePage() {
             className="lg:col-span-5"
           >
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+              <div className="overflow-hidden rounded-2xl">
                 <button
                   onClick={() => {
-                    viewArtwork(heroArt.id);
-                    navigate({ name: 'artwork', id: heroArt.id });
+                    viewArtwork(artworks[1].id);
+                    navigate({ name: 'artwork', id: artworks[1].id });
                   }}
                   className="block w-full"
                   aria-label="View featured artwork"
@@ -97,9 +100,9 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.9 }}
-                className="absolute -bottom-5 -left-5 max-w-[220px] rounded-2xl border border-sand-200 bg-cream-50 p-4 shadow-sm md:-left-8"
+                className="absolute -bottom-5 -left-5 max-w-[220px] rounded-2xl bg-white p-4 shadow-lg md:-left-8"
               >
-                <p className="text-[11px] uppercase tracking-[0.2em] text-sand-600">Now showing</p>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-ink-muted">Now showing</p>
                 <p className="mt-1 font-display text-lg text-ink">Mother's Hands</p>
                 <p className="text-sm text-ink-muted">Ama Serwaa · 2023</p>
               </motion.div>
@@ -108,8 +111,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured preview */}
-      <section className="bg-cream-200/50 py-20 md:py-28">
+      {/* Featured preview — Pinterest-style masonry collage */}
+      <section className="bg-sand-200/40 py-20 md:py-28">
         <div className="container-x">
           <Reveal className="flex items-end justify-between">
             <div>
@@ -120,13 +123,14 @@ export default function HomePage() {
             </div>
             <button
               onClick={() => navigate({ name: 'gallery' })}
-              className="hidden text-[12px] uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-ink md:block"
+              className="hidden items-center gap-1.5 text-[14px] font-semibold text-ink transition-colors hover:text-terracotta-500 md:inline-flex"
             >
-              View all →
+              View all
+              <ArrowRight size={16} />
             </button>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-3 [&>*]:mb-4 [&>*]:break-inside-avoid">
             {featured.map((a, i) => {
               const avg = getAverageRating(a.id);
               return (
@@ -139,38 +143,30 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="group text-left"
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="group block w-full text-left"
                 >
-                  <div className="relative overflow-hidden rounded-2xl border border-sand-200/70">
-                    <div className="aspect-[4/5] w-full overflow-hidden">
+                  <div className="relative overflow-hidden rounded-2xl bg-sand-200">
+                    <div className={`${RATIOS[i % RATIOS.length]} w-full overflow-hidden`}>
                       <img
                         src={a.image}
                         alt={a.title}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06]"
+                        className="h-full w-full object-cover transition-transform duration-[700ms] ease-smooth group-hover:scale-[1.05]"
                       />
                     </div>
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full p-3 transition-transform duration-500 ease-smooth group-hover:translate-y-0">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-[12px] uppercase tracking-[0.18em] text-cream-100">
-                        View Artwork
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
-                          <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                    <div className="pointer-events-none absolute inset-0 bg-ink/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] font-semibold text-ink">
+                        {formatPrice(a.price)}
                       </span>
                     </div>
                   </div>
-                  <div className="mt-4 flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <h3 className="truncate font-display text-lg font-medium text-ink">{a.title}</h3>
-                      <p className="mt-0.5 truncate text-sm text-ink-muted">{a.artistName}</p>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-sand-600">{a.category}</p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className="font-display text-base font-medium text-ink">{formatPrice(a.price)}</p>
-                      <div className="mt-1 flex items-center justify-end gap-1.5">
-                        <StarRating rating={avg} size={12} />
-                      </div>
+                  <div className="px-1 pt-2.5">
+                    <h3 className="truncate text-[15px] font-semibold text-ink">{a.title}</h3>
+                    <p className="mt-0.5 truncate text-[13px] text-ink-soft">{a.artistName}</p>
+                    <div className="mt-1.5 flex items-center gap-1.5">
+                      <StarRating rating={avg} size={12} />
                     </div>
                   </div>
                 </motion.button>
@@ -187,7 +183,7 @@ export default function HomePage() {
       </section>
 
       {/* Statement */}
-      <section className="bg-cream-100 py-20 md:py-28">
+      <section className="bg-white py-20 md:py-28">
         <div className="container-x text-center">
           <Reveal>
             <CutoutText text="ART HAS A VOICE" ariaLabel="Art has a voice" className="text-4xl sm:text-6xl lg:text-7xl" />

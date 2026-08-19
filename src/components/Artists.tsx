@@ -4,7 +4,7 @@ import { Reveal, TextReveal } from './SectionTransition';
 
 export default function Artists() {
   return (
-    <section id="artists" className="bg-cream-200/50 py-20 md:py-28">
+    <section id="artists" className="bg-sand-200/40 py-20 md:py-28">
       <div className="container-x">
         <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>

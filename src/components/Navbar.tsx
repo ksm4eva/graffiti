@@ -43,8 +43,8 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-smooth ${
           scrolled
-            ? 'bg-cream-100/85 backdrop-blur-md border-b border-sand-200/70'
-            : 'bg-transparent border-b border-transparent'
+            ? 'bg-white/90 backdrop-blur-md border-b border-sand-200'
+            : 'bg-white border-b border-sand-200'
         }`}
       >
         <nav className="container-x flex h-16 items-center justify-between md:h-20">
@@ -105,7 +105,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-[60] bg-ink/40 backdrop-blur-sm"
               onClick={() => setMenuOpen(false)}
             />
             <motion.aside
@@ -113,7 +113,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed right-0 top-0 z-[61] flex h-full w-[88%] max-w-sm flex-col bg-cream-100 shadow-2xl"
+              className="fixed right-0 top-0 z-[61] flex h-full w-[88%] max-w-sm flex-col bg-white shadow-2xl"
             >
               <div className="flex h-16 items-center justify-between px-5 md:h-20">
                 <Wordmark className="text-xl" onClick={() => { setMenuOpen(false); navigate({ name: 'home' }); }} />
@@ -226,15 +226,15 @@ export default function Navbar() {
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
-              className="mx-auto mt-20 w-[92%] max-w-2xl rounded-3xl bg-cream-100 p-6 shadow-2xl"
+              className="mx-auto mt-20 w-[92%] max-w-2xl rounded-3xl bg-white p-6 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-3 border-b border-sand-200 pb-4">
+              <div className="flex items-center gap-3 rounded-full bg-sand-200 px-5 py-4">
                 <Search size={20} className="text-ink-muted" />
                 <input
                   autoFocus
                   placeholder="Search artworks, artists, categories…"
-                  className="w-full bg-transparent text-lg text-ink outline-none placeholder:text-ink-muted/60"
+                  className="w-full bg-transparent text-base text-ink outline-none placeholder:text-ink-muted"
                 />
                 <button onClick={() => setSearchOpen(false)} aria-label="Close search">
                   <X size={20} className="text-ink-muted" />
@@ -266,14 +266,14 @@ function MenuRow({
     <motion.li variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0 } }}>
       <button
         onClick={onClick}
-        className="flex w-full items-center gap-4 rounded-2xl px-3 py-3 text-left transition-colors hover:bg-sand-200/50"
+        className="flex w-full items-center gap-4 rounded-full px-3 py-3 text-left transition-colors hover:bg-sand-200"
       >
-        <span className="grid h-10 w-10 place-items-center rounded-full border border-sand-300 text-ink-soft">
+        <span className="grid h-10 w-10 place-items-center rounded-full border border-sand-300 text-ink">
           {icon}
         </span>
-        <span className="text-sm uppercase tracking-[0.16em] text-ink-soft">{label}</span>
+        <span className="text-sm uppercase tracking-[0.16em] text-ink">{label}</span>
         {badge && badge > 0 ? (
-          <span className="ml-auto grid h-5 min-w-5 place-items-center rounded-full bg-terracotta-500 px-1.5 text-[10px] font-semibold text-[#100e0c]">
+          <span className="ml-auto grid h-5 min-w-5 place-items-center rounded-full bg-terracotta-500 px-1.5 text-[10px] font-semibold text-white">
             {badge}
           </span>
         ) : null}

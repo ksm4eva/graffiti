@@ -47,7 +47,7 @@ export default function ArtworkDetail({ id }: Props) {
     .slice(0, 4);
 
   return (
-    <main className="bg-cream-100 pt-24 md:pt-28">
+    <main className="bg-white pt-24 md:pt-28">
       <div className="container-x py-8">
         <button
           onClick={() => navigate({ name: 'home' })}
@@ -60,7 +60,7 @@ export default function ArtworkDetail({ id }: Props) {
           {/* Image gallery */}
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+              <div className="overflow-hidden rounded-2xl">
                 <motion.img
                   key={activeImg}
                   initial={{ opacity: 0.4, scale: 1.02 }}
@@ -261,7 +261,7 @@ export default function ArtworkDetail({ id }: Props) {
                   onChange={(e) => setCommentText(e.target.value)}
                   rows={3}
                   placeholder="Share a thoughtful note about this work…"
-                  className="w-full resize-none rounded-2xl border border-sand-200 bg-cream-50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+                  className="w-full resize-none rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
                 />
                 <div className="mt-3 flex justify-end">
                   <GraffitiButton size="sm" type="submit">
@@ -275,7 +275,7 @@ export default function ArtworkDetail({ id }: Props) {
                   <p className="text-sm text-ink-muted">No comments yet — be the first to share.</p>
                 )}
                 {artComments.map((c) => (
-                  <div key={c.id} className="rounded-2xl border border-sand-200/70 bg-cream-50 p-5">
+                  <div key={c.id} className="rounded-2xl border border-sand-200 bg-sand-200/50 p-5">
                     <div className="flex items-center justify-between">
                       <p className="font-medium text-ink">{c.userName}</p>
                       <span className="text-[11px] text-ink-muted">{c.createdAt}</span>
@@ -287,7 +287,7 @@ export default function ArtworkDetail({ id }: Props) {
                     )}
                     <p className="mt-3 text-sm leading-relaxed text-ink-soft">{c.message}</p>
                     {c.adminResponse && (
-                      <div className="mt-4 rounded-xl bg-sand-100 p-4">
+                      <div className="mt-4 rounded-xl bg-sand-200/50 p-4">
                         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-muted">Gallery response</p>
                         <p className="mt-1 text-sm text-ink-soft">{c.adminResponse}</p>
                       </div>
@@ -314,7 +314,7 @@ export default function ArtworkDetail({ id }: Props) {
                   }}
                   className="group text-left"
                 >
-                  <div className="overflow-hidden rounded-2xl border border-sand-200/70">
+                  <div className="overflow-hidden rounded-2xl">
                     <img src={a.image} alt={a.title} className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                   <p className="mt-3 font-display text-base text-ink">{a.title}</p>
@@ -372,7 +372,7 @@ function PurchaseModal({
         exit={{ y: 40, opacity: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-cream-100 p-6 md:rounded-3xl md:p-10"
+        className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white p-6 md:rounded-3xl md:p-10"
       >
         <div className="flex items-start justify-between">
           <div>
@@ -385,7 +385,7 @@ function PurchaseModal({
         </div>
 
         {/* Artwork summary */}
-        <div className="mt-6 flex gap-4 rounded-2xl border border-sand-200/70 bg-cream-50 p-4">
+        <div className="mt-6 flex gap-4 rounded-2xl border border-sand-200 bg-sand-200/50 p-4">
           <img src={artwork.image} alt={artwork.title} className="h-20 w-20 rounded-xl object-cover" />
           <div className="flex flex-1 flex-col">
             <p className="font-display text-lg text-ink">{artwork.title}</p>
@@ -441,7 +441,7 @@ function PurchaseModal({
           </form>
         ) : (
           <div className="mt-6">
-            <div className="space-y-3 rounded-2xl border border-sand-200/70 bg-cream-50 p-5 text-sm">
+            <div className="space-y-3 rounded-2xl border border-sand-200 bg-sand-200/50 p-5 text-sm">
               <Row label="Subtotal" value={formatPrice(artwork.price * qty)} />
               <Row label="Shipping (insured)" value={formatPrice(shipping)} />
               <div className="border-t border-sand-200 pt-3">
@@ -475,7 +475,7 @@ function CheckoutField({ label, type = 'text', placeholder }: { label: string; t
         required
         type={type}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+        className="mt-2 w-full rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
       />
     </div>
   );

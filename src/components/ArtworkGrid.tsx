@@ -6,9 +6,14 @@ interface Props {
   artworks: Artwork[];
 }
 
+// Pinterest-style masonry: CSS columns with break-inside avoid so cards of
+// varying heights form a staggered wall of images.
 export default function ArtworkGrid({ artworks }: Props) {
   return (
-    <motion.div layout className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <motion.div
+      layout
+      className="columns-2 gap-4 sm:columns-3 lg:columns-4 xl:columns-5 [&>*]:mb-4 [&>*]:break-inside-avoid"
+    >
       <AnimatePresence mode="popLayout">
         {artworks.map((a, i) => (
           <ArtworkCard key={a.id} artwork={a} index={i} />

@@ -75,7 +75,7 @@ export function MaskReveal({ children, className = '', delay = 0 }: Props) {
   );
 }
 
-export function TextReveal({ text, className = '' }: { text: string; className?: string }) {
+export function TextReveal({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
   const words = text.split(' ');
   return (
     <span className={className}>
@@ -86,7 +86,7 @@ export function TextReveal({ text, className = '' }: { text: string; className?:
             initial={{ y: '110%' }}
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, delay: delay + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
           >
             {word}
             {i < words.length - 1 ? '\u00A0' : ''}

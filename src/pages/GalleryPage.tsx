@@ -19,7 +19,7 @@ export default function GalleryPage() {
   }, [filter, artworks]);
 
   return (
-    <main className="bg-cream-100 pt-28 md:pt-36">
+    <main className="bg-white pt-28 md:pt-36">
       <section className="container-x pb-10 md:pb-14">
         <Reveal>
           <p className="eyebrow">The Collection</p>

@@ -17,7 +17,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-cream-100 pt-28 md:pt-36">
+    <main className="bg-white pt-28 md:pt-36">
       <section className="container-x pb-10 md:pb-14">
         <Reveal>
           <p className="eyebrow">Get in touch</p>
@@ -48,7 +48,7 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 rounded-2xl border border-sand-200/70 bg-cream-50 p-5">
+          <div className="mt-8 rounded-2xl border border-sand-200 bg-sand-200/50 p-5">
             <p className="text-[11px] uppercase tracking-[0.2em] text-sand-600">A note on messages</p>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
               Your message is received by the gallery admin team. Artists do not receive direct messages from visitors.
@@ -59,7 +59,7 @@ export default function ContactPage() {
         <Reveal delay={0.25} className="lg:col-span-7">
           <form
             onSubmit={submit}
-            className="rounded-3xl border border-sand-200/70 bg-cream-50 p-6 md:p-10"
+            className="rounded-2xl border border-sand-200 bg-white p-6 md:p-10"
           >
             <div className="grid gap-5 md:grid-cols-2">
               <Field label="Name" name="name" placeholder="Your name" />
@@ -72,7 +72,7 @@ export default function ContactPage() {
               <select
                 id="topic"
                 name="topic"
-                className="mt-2 w-full rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors focus:border-ink/40"
+                className="mt-2 w-full rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors focus:border-ink/40"
               >
                 <option>An artwork</option>
                 <option>An artist</option>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 required
                 rows={5}
                 placeholder="Tell us a little more…"
-                className="mt-2 w-full resize-none rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+                className="mt-2 w-full resize-none rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
               />
             </div>
             <div className="mt-6 flex items-center justify-between gap-4">
@@ -130,7 +130,7 @@ function Field({
         type={type}
         required
         placeholder={placeholder}
-        className="mt-2 w-full rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+        className="mt-2 w-full rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
       />
     </div>
   );

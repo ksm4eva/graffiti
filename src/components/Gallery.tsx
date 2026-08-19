@@ -18,7 +18,7 @@ export default function Gallery() {
   }, [filter, artworks]);
 
   return (
-    <section id="gallery" className="bg-cream-100 py-20 md:py-28">
+    <section id="gallery" className="bg-white py-20 md:py-28">
       <div className="container-x">
         <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>

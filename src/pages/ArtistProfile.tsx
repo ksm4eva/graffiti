@@ -34,7 +34,7 @@ export default function ArtistProfile({ id }: Props) {
   };
 
   return (
-    <main className="bg-cream-100 pt-24 md:pt-28">
+    <main className="bg-white pt-24 md:pt-28">
       <div className="container-x py-8">
         <button
           onClick={() => navigate({ name: 'home' })}
@@ -45,7 +45,7 @@ export default function ArtistProfile({ id }: Props) {
 
         <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
-            <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+            <div className="overflow-hidden rounded-2xl">
               <img src={artist.image} alt={artist.name} className="aspect-[4/5] w-full object-cover" />
             </div>
           </Reveal>

@@ -9,7 +9,7 @@ export default function AboutPage() {
   const { navigate } = useApp();
 
   return (
-    <main className="bg-cream-100 pt-28 md:pt-36">
+    <main className="bg-white pt-28 md:pt-36">
       {/* Hero statement */}
       <section className="container-x pb-16 md:pb-24">
         <Reveal>
@@ -28,7 +28,7 @@ export default function AboutPage() {
       {/* Editorial image + text */}
       <section className="container-x grid gap-12 pb-20 md:pb-28 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
-          <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+          <div className="overflow-hidden rounded-2xl">
             <img
               src={galleryImages.aboutWide}
               alt="Gallery interior"
@@ -54,7 +54,7 @@ export default function AboutPage() {
       </section>
 
       {/* Supporting artists */}
-      <section className="bg-cream-200/50 py-20 md:py-28">
+      <section className="bg-sand-200/40 py-20 md:py-28">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
             <Reveal>
@@ -80,7 +80,7 @@ export default function AboutPage() {
           </div>
           <Reveal delay={0.2} className="lg:col-span-6">
             <div className="grid gap-6">
-              <div className="overflow-hidden rounded-2xl border border-sand-200/70">
+              <div className="overflow-hidden rounded-2xl">
                 <img
                   src={galleryImages.aboutTall}
                   alt="Artist portrait"
@@ -88,7 +88,7 @@ export default function AboutPage() {
                   className="aspect-[3/4] w-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-between rounded-2xl border border-sand-200/70 bg-sand-100 p-6">
+              <div className="flex flex-col justify-between rounded-2xl border border-sand-200 bg-sand-200/50 p-6">
                 <p className="font-serif text-xl italic leading-snug text-ink-soft">
                   “We built GRAFFITI so that the art, not the algorithm, decides what is seen.”
                 </p>
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-cream-100 py-16 md:py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="container-x">
           <Reveal>
             <div className="grid grid-cols-3 gap-6 border-t border-sand-200 pt-8">

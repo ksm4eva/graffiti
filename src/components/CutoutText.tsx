@@ -4,6 +4,7 @@ interface Props {
   text: string;
   className?: string;
   ariaLabel?: string;
+  delay?: number;
 }
 
 const papers = [
@@ -17,7 +18,7 @@ const papers = [
   { bg: '#f0d887', color: '#806014', font: 'Georgia, serif', rotate: 3, y: -2 },
 ];
 
-export default function CutoutText({ text, className = '', ariaLabel }: Props) {
+export default function CutoutText({ text, className = '', ariaLabel, delay = 0 }: Props) {
   const letters = Array.from(text);
   return (
     <span className={`cutout-text ${className}`} role="img" aria-label={ariaLabel ?? text}>
@@ -30,7 +31,7 @@ export default function CutoutText({ text, className = '', ariaLabel }: Props) {
             initial={{ opacity: 0, y: 28, rotate: paper.rotate - 8 }}
             whileInView={{ opacity: 1, y: paper.y, rotate: paper.rotate }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55, delay: index * 0.055, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, delay: delay + index * 0.055, ease: [0.22, 1, 0.36, 1] }}
             className="cutout-letter"
             style={{
               backgroundColor: paper.bg,

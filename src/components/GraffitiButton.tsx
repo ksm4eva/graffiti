@@ -29,12 +29,11 @@ export default function GraffitiButton({
 }: Props) {
   const ref = useRef<HTMLButtonElement>(null);
 
-  // Black pill with white text — the GRAFFITI signature button.
-  // On dark gallery backgrounds the solid button stays a true black with cream text.
+  // Pinterest-style: solid dark pill with white text; outline = dark border + dark text.
   const variantClass =
     variant === 'outline'
-      ? 'border-[#0a0908] bg-transparent text-[#f4ead8] hover:bg-[#0a0908] hover:text-[#f4ead8]'
-      : 'border-[#0a0908] bg-[#0a0908] text-[#f4ead8]';
+      ? 'border-ink bg-transparent text-ink hover:bg-ink hover:text-white'
+      : 'border-ink bg-ink text-white';
 
   return (
     <motion.button

@@ -82,7 +82,7 @@ function Shell() {
   const { route } = useApp();
   const hideNav = route.name === 'auth';
   return (
-    <div className="min-h-screen bg-cream-100">
+    <div className="min-h-screen bg-white">
       {!hideNav && <Navbar />}
       <Routes />
       <Toast />

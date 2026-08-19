@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { Heart, MoreRound } from './PinterestIcons';
 import type { Artwork } from '@/data/types';
-import { formatPrice, getAverageRating, getRatingCount } from '@/lib/artwork';
-import StarRating from './StarRating';
+import { formatPrice } from '@/lib/artwork';
 import { useApp } from '@/contexts/AppContext';
 
 interface Props {
@@ -10,11 +9,19 @@ interface Props {
   index?: number;
 }
 
+// Varying aspect ratios give the masonry wall its staggered, Pinterest feel.
+const RATIONS = [
+  'aspect-[3/4]',
+  'aspect-[4/5]',
+  'aspect-square',
+  'aspect-[3/4]',
+  'aspect-[4/5]',
+];
+
 export default function ArtworkCard({ artwork, index = 0 }: Props) {
   const { navigate, viewArtwork, wishlist, toggleWishlist, showToast } = useApp();
-  const avg = getAverageRating(artwork.id);
-  const count = getRatingCount(artwork.id);
   const inWish = wishlist.includes(artwork.id);
+  const ratio = RATIONS[index % RATIONS.length];
 
   const open = () => {
     viewArtwork(artwork.id);
@@ -24,30 +31,34 @@ export default function ArtworkCard({ artwork, index = 0 }: Props) {
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 12, scale: 0.98 }}
-      transition={{ duration: 0.5, delay: Math.min(index * 0.04, 0.2), ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col"
+      transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.15), ease: [0.22, 1, 0.36, 1] }}
+      className="group relative mb-4 break-inside-avoid"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-sand-200/70 bg-cream-50">
+      <div className="relative overflow-hidden rounded-2xl bg-sand-200">
         <button onClick={open} className="block w-full" aria-label={`View ${artwork.title}`}>
-          <div className="aspect-[4/5] w-full overflow-hidden">
+          <div className={`${ratio} w-full overflow-hidden`}>
             <img
               src={artwork.image}
               alt={artwork.title}
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06]"
+              className="h-full w-full object-cover transition-transform duration-[700ms] ease-smooth group-hover:scale-[1.05]"
             />
           </div>
         </button>
 
+        {/* Dark overlay on hover, like Pinterest */}
+        <div className="pointer-events-none absolute inset-0 bg-ink/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
         {!artwork.available && (
-          <span className="absolute left-3 top-3 rounded-full bg-ink/85 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-cream-100">
+          <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[11px] font-medium text-ink">
             Sold
           </span>
         )}
 
+        {/* Save button — Pinterest's red pill, top right */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -55,38 +66,31 @@ export default function ArtworkCard({ artwork, index = 0 }: Props) {
             showToast(inWish ? 'Removed from wishlist' : 'Added to wishlist');
           }}
           aria-label="Toggle wishlist"
-          className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-cream-100/85 backdrop-blur transition-colors hover:bg-cream-100"
+          className={`absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[12px] font-semibold transition-all duration-300 ${
+            inWish
+              ? 'bg-terracotta-500 text-white'
+              : 'bg-white text-ink opacity-0 group-hover:opacity-100 hover:bg-white/90'
+          }`}
         >
-          <Heart size={15} className={inWish ? 'fill-terracotta-500 text-terracotta-500' : 'text-ink'} />
+          <Heart size={14} className={inWish ? 'fill-white' : ''} />
+          {inWish ? 'Saved' : 'Save'}
         </button>
 
-        {/* View button slides up on hover */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full p-3 transition-transform duration-500 ease-smooth group-hover:translate-y-0">
-          <button
-            onClick={open}
-            className="pointer-events-auto flex w-full items-center justify-between rounded-full bg-ink px-5 py-3 text-[12px] uppercase tracking-[0.18em] text-cream-100"
-          >
-            View
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
+        {/* Bottom-right more button on hover */}
+        <button
+          onClick={open}
+          aria-label="View artwork"
+          className="absolute bottom-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-white opacity-0 transition-all duration-300 group-hover:opacity-100 hover:bg-white/90"
+        >
+          <MoreRound size={16} className="text-ink" />
+        </button>
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="truncate font-display text-lg font-medium text-ink">{artwork.title}</h3>
-          <p className="mt-0.5 truncate text-sm text-ink-muted">{artwork.artistName}</p>
-          <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-sand-600">{artwork.category}</p>
-        </div>
-        <div className="shrink-0 text-right">
-          <p className="font-display text-base font-medium text-ink">{formatPrice(artwork.price)}</p>
-          <div className="mt-1 flex items-center justify-end gap-1.5">
-            <StarRating rating={avg} size={12} />
-            <span className="text-[11px] text-ink-muted">{count}</span>
-          </div>
-        </div>
+      {/* Caption below image — minimal, like Pinterest */}
+      <div className="px-1 pt-2.5">
+        <h3 className="truncate text-[15px] font-semibold text-ink">{artwork.title}</h3>
+        <p className="mt-0.5 truncate text-[13px] text-ink-soft">{artwork.artistName}</p>
+        <p className="mt-1 text-[13px] font-medium text-ink">{formatPrice(artwork.price)}</p>
       </div>
     </motion.article>
   );

@@ -3,7 +3,7 @@ import { galleryImages } from '@/data/mock';
 
 export default function AboutGraffiti() {
   return (
-    <section className="bg-cream-100 py-20 md:py-28">
+    <section className="bg-white py-20 md:py-28">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
           <Reveal>
@@ -47,7 +47,7 @@ export default function AboutGraffiti() {
 
         <div className="lg:col-span-6">
           <Reveal delay={0.2} className="grid gap-6">
-            <div className="overflow-hidden rounded-3xl border border-sand-200/70">
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src={galleryImages.aboutWide}
                 alt="Gallery interior"
@@ -56,7 +56,7 @@ export default function AboutGraffiti() {
               />
             </div>
             <div className="grid grid-cols-2 gap-6">
-              <div className="overflow-hidden rounded-2xl border border-sand-200/70">
+              <div className="overflow-hidden rounded-2xl">
                 <img
                   src={galleryImages.aboutTall}
                   alt="Artist portrait"
@@ -64,7 +64,7 @@ export default function AboutGraffiti() {
                   className="aspect-[3/4] w-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-between rounded-2xl border border-sand-200/70 bg-sand-100 p-6">
+              <div className="flex flex-col justify-between rounded-2xl border border-sand-200 bg-sand-200/50 p-6">
                 <p className="font-serif text-xl italic leading-snug text-ink-soft">
                   “We built GRAFFITI so that the art, not the algorithm, decides what is seen.”
                 </p>

@@ -24,7 +24,7 @@ export default function DashboardShell({ title, subtitle, tabs, accent = 'ink' }
   const accentClass = accent === 'terracotta' ? 'bg-terracotta-500' : 'bg-ink';
 
   return (
-    <main className="min-h-screen bg-cream-100 pt-24 md:pt-28">
+    <main className="min-h-screen bg-white pt-24 md:pt-28">
       <div className="container-x py-8">
         <div className="flex items-center justify-between">
           <button
@@ -58,7 +58,7 @@ export default function DashboardShell({ title, subtitle, tabs, accent = 'ink' }
                   key={t.id}
                   onClick={() => setActive(t.id)}
                   className={`relative whitespace-nowrap rounded-full px-4 py-2.5 text-left text-[12px] uppercase tracking-[0.18em] transition-colors lg:w-full ${
-                    isActive ? 'text-cream-100' : 'text-ink-soft hover:text-ink'
+                    isActive ? 'text-white' : 'text-ink-soft hover:text-ink'
                   }`}
                 >
                   {isActive && (
@@ -93,7 +93,7 @@ export default function DashboardShell({ title, subtitle, tabs, accent = 'ink' }
 
 export function StatCard({ n, l }: { n: string | number; l: string }) {
   return (
-    <div className="rounded-2xl border border-sand-200/70 bg-cream-50 p-5">
+    <div className="rounded-2xl border border-sand-200 bg-white p-5">
       <p className="font-display text-3xl font-medium text-ink">{n}</p>
       <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-muted">{l}</p>
     </div>
@@ -102,7 +102,7 @@ export function StatCard({ n, l }: { n: string | number; l: string }) {
 
 export function Empty({ text }: { text: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-sand-300 bg-cream-50/50 p-12 text-center">
+    <div className="rounded-2xl border border-dashed border-sand-300 bg-sand-200/30 p-12 text-center">
       <p className="text-ink-muted">{text}</p>
     </div>
   );

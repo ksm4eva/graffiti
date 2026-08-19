@@ -7,7 +7,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-sand-200/70 bg-cream-50 text-ink">
+    <footer className="border-t border-sand-200 bg-white text-ink">
       <div className="container-x grid gap-12 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5">
           <Wordmark className="text-2xl md:text-3xl" onClick={() => navigate({ name: 'home' })} />

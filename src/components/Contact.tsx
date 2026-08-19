@@ -17,7 +17,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-cream-200/50 py-20 md:py-28">
+    <section id="contact" className="bg-sand-200/40 py-20 md:py-28">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Reveal>
@@ -49,7 +49,7 @@ export default function Contact() {
         <Reveal delay={0.25} className="lg:col-span-7">
           <form
             onSubmit={submit}
-            className="rounded-3xl border border-sand-200/70 bg-cream-50 p-6 md:p-10"
+            className="rounded-2xl border border-sand-200 bg-white p-6 md:p-10"
           >
             <div className="grid gap-5 md:grid-cols-2">
               <Field label="Name" name="name" placeholder="Your name" />
@@ -64,7 +64,7 @@ export default function Contact() {
                 required
                 rows={5}
                 placeholder="Tell us a little more…"
-                className="mt-2 w-full resize-none rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+                className="mt-2 w-full resize-none rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
               />
             </div>
             <div className="mt-6 flex items-center justify-between gap-4">
@@ -104,7 +104,7 @@ function Field({
         type={type}
         required
         placeholder={placeholder}
-        className="mt-2 w-full rounded-2xl border border-sand-200 bg-cream-100 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
+        className="mt-2 w-full rounded-2xl border border-sand-200 bg-sand-200/50 px-5 py-3.5 text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-ink/40"
       />
     </div>
   );
